@@ -1,60 +1,73 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express         = require('express'),
+    path            = require('path'),
+    mongoose        = require('mongoose'),
+    bodyParser      = require('body-parser'),
+    colors          = require('colors');
+    databaseName    = 'angular_mongodb',
+    app             = express(),
+    port            = process.env.PORT || CONFIG.port;
 
+if (typeof port === 'undefined') {
+    var port = 4000;
+};
+
+
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: true}));
+
+var router  = express.Router();
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
-var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+    app.use(express.static(path.join(__dirname, './public/client')));
+    app.use('/admin', express.static(path.join(__dirname, './public/admin')));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+mongoose.connect('mongodb://tesla:Qe7ADruJetr2fU5A@ds037837.mongolab.com:37837/angular_mongodb');
 
-app.use('/', routes);
-app.use('/users', users);
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', startServer);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
-// error handlers
+var resetDB = require('./datainit');
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+// RESET DB
+router.get("/resetdb", resetDB.resetDB);
+
+// Get info
+router.get("/ok", routes.index);
+router.get("/api", routes.api);
+router.get('/api/products', routes.products);
+router.get('/api/categories', routes.categories);
+router.get('/api/orders', routes.orders);
+
+// Create data
+router.post('/api/product', routes.createProduct);
+router.post('/api/category', routes.createCategory);
+router.post('/api/order', routes.createOrder);
+
+// Read / Update / Delete specific product
+router.route('/api/product/:_id')
+    .get(routes.readProduct)
+    .put(routes.updateProduct)
+    .delete(routes.deleteProduct);
+
+// Read / Update / Delete specific category
+router.route('/api/category/:_id')
+    .get(routes.readCategory)
+    .put(routes.updateCategory)
+    .delete(routes.deleteCategory);
+    
+app.use('/', router);
+
+function startServer(){
+    console.log('DB is open')
+    var server = app.listen(port, function() {
+        var port = server.address().port;
+        console.log("Listening on port " + port);
     });
-  });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
-
+  
 module.exports = app;

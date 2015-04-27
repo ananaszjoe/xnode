@@ -1,0 +1,31 @@
+<h2>{{cartTitle}}</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<td>Product</td>
+			<td>Amount</td>
+			<td>Price</td>
+			<td>Subtotal</td>
+			<td>Reduce</td>
+			<td>Increase</td>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="cartItem in cart" ng-show="cartItem.amount > 0">
+			<td>{{cartItem.name}}</td>
+			<td>{{cartItem.amount}}</td>
+			<td>{{cartItem.price | number:2}},-</td>
+			<td><strong>{{cartItem.total | number:2}}</strong>,-</td>
+			<td><button ng-click="cartReduce(cartItem.id)" class="btn btn-danger">-</button></td>
+			<td><button ng-click="cartIncrease(cartItem.id)" class="btn btn-success">+</button></td>
+		</tr>
+		<tr class="cartTotal">
+			<td colspan="3">Total:</td>
+			<td colspan="3"><strong>{{cart.total | number:2}}</strong> DKK</td>
+		</tr>
+	</tbody>
+</table>
+<p ng-hide="location.path() == '/checkout'">
+	<a href="./#/checkout/" class="btn btn-success btn-block">Checkout</a>
+</p>

@@ -1,0 +1,17 @@
+<h1>Categories</h1>
+	    	<table class="table">
+		    	<thead>
+		    		<th>Name</th>
+		    		<th>Action</th>
+		    	</thead>
+		    	<tbody>
+		    		<tr ng-repeat="category in categories" ng-show="category">
+		    			<td>{{category.name}}</td>
+		    			<td>
+		    				<button class="btn btn-danger" ng-click="deleteCategory(category)">Delete</button>
+		    				<button class="btn btn-primary" ng-click="editCategory(category)">Edit</button>
+		    			</td>
+		    		</tr>
+		    		
+		    	</tbody>
+	    	</table>

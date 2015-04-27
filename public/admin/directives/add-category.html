@@ -1,0 +1,10 @@
+<h1>Add Category</h1>
+<form class="form-horizontal">
+	<div class="form-group">
+		<label class="control-label col-xs-2">Name: </label>
+		<div class="col-xs-10">
+			<input class="form-control" type="text" ng-model="newCategory.name" value="{{newCategory.name}}">
+		</div>
+	</div>
+	<buttton class="btn btn-primary" ng-click="addCategory(newCategory)">Save</buttton>
+</form>

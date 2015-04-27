@@ -1,0 +1,31 @@
+body {
+	background-color: #F0EDC6;
+}
+.rowstart {
+	clear: left;
+}
+product img{
+	width: 100%;
+	clear: both;
+	display: block;
+	/*float: left;*/
+}
+.cartTotal {
+	border-top: 3px double #ccc;
+}
+
+.cartTotal {
+	font-size: 1.2em;
+}
+
+.panel label {
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.thumbnail {
+	position: relative;
+}
+.thumbnail .badge {
+	position: absolute;
+}

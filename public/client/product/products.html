@@ -1,0 +1,18 @@
+<section id="filter" class="col-md-6 col-sm-12">
+	<div class="panel col-md-12">
+		<h2>Search fruits</h2>
+		<div class="col-md-6 col-sm-12">
+			<input ng-model="textSearch" type="text" placeholder="Search..." class="form-control">						
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<p ng-repeat="category in categories">
+				<label><input ng-model="categoryFilter[category.id]" type="checkbox" name="category" value="{{category.id}}"> {{category.name}}</label>
+			</p>
+		</div>
+	</div>
+
+</section>
+<cart ng-show="cart.holds > 0" class="panel col-md-6 col-sm-12"></cart>
+<section>
+    <product ng-repeat="product in products | filter:filterByCategory | filter:textSearch" ng-class="{rowstart: (($index) % 4 == 0)}" ng-show="product.img" class="col-md-3 col-sm-6 hero-feature"></product>
+</section>

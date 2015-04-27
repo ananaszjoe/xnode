@@ -1,0 +1,34 @@
+<h1>Add Product</h1>
+<form class="form-horizontal">
+	<div class="form-group">
+		<label class="control-label col-xs-2">Name: </label>
+		<div class="col-xs-10">
+			<input class="form-control" type="text" ng-model="newProduct.name" value="{{newProduct.name}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-2">Price: </label>
+		<div class="col-xs-10">
+			<input class="form-control" type="text" ng-model="newProduct.price" value="{{newProduct.price}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-2">img: </label>
+		<div class="col-xs-10">
+			<input class="form-control" type="text" ng-model="newProduct.img" value="{{newProduct.img}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-2">category: </label>
+		<div class="col-xs-10">
+			<input class="form-control" type="text" ng-model="newProduct.category" value="{{newProduct.category}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-2">description: </label>
+		<div class="col-xs-10">
+			<input class="form-control" type="text" ng-model="newProduct.description" value="{{newProduct.description}}">
+		</div>
+	</div>
+	<buttton class="btn btn-primary" ng-click="addProduct(newProduct)">Save</buttton>
+</form>

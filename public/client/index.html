@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="Fruitstore">
+	<head>
+	    <title>Fruit Store</title>
+
+		<meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+
+	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/custom.css">
+
+	    <base href="/">
+
+	    <script src="angular.js"></script>
+	    <script src="angular-route.js"></script>
+
+	</head>
+	<body >
+
+		<div class="container">
+
+	
+			<div class="col-md-12">
+				<h1>Fruit Store</h1>
+			</div>
+			<div ng-view>
+
+			</div>
+			
+
+	        <section>
+	        </section>
+
+        </div>
+        
+		
+	    <script src="app.js"></script>
+	    <script src="app.config.js"></script>
+	    <script src="product/product.service.js"></script>
+	    <script src="product/product.js"></script>
+	    <script src="cart/cart.js"></script>
+	    <script src="checkout/checkout.js"></script>
+	    <script src="cart/cart.service.js"></script>
+	    <script src="app.run.js"></script>
+	</body>
+</html>
