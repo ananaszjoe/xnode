@@ -65,7 +65,7 @@ exports.readProduct = function(req, res, next){
 
 		var hit = {"response": "fail"};
 		for (var i = data.length - 1; i >= 0; i--) {
-			if (data[i].id == id) {
+			if (data[i]._id.$oid == id) {
 				var hit = {
 					"response": "success",
 					"data": data[i]

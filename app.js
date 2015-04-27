@@ -58,8 +58,10 @@ router.route('/api/category/:_id')
     .get(routes.readCategory)
     .put(routes.updateCategory)
     .delete(routes.deleteCategory);
-    
+   
+
 app.use('/', router);
+
 
 function startServer(){
     console.log('DB is open')
